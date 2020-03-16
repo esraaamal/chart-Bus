@@ -72,7 +72,43 @@ for(var i=0; i< busArrray.length;i++){
 var optionEl =document.createElement('option');
 selectOp.appendChild(optionEl);
 optionEl.textContent=`${objectBus[i].name}`;
+optionEl.setAttribute('value' ,objectBus[i].name);
 
 }
 }
 renderss();
+
+
+// function show(){
+
+
+
+// }
+
+function myFunction(e){
+
+e.preventDefault();
+var shoeOrder =document.getElementById('shoeOrder');
+var sulEl =document.createElement('ul');
+shoeOrder.appendChild(sulEl);
+for(var i=0; i< busArrray.length;i++){
+if(e.target.value === objectBus[i].name){
+    sulEl.textContent='your order are:';
+var sliEl=document.createElement('li');
+sliEl.textContent =`${objectBus[i].name}`;
+sulEl.appendChild(sliEl);
+var imgEl=document.createElement('img');
+imgEl.setAttribute('src', objectBus[i].urlImage);
+sulEl.appendChild(imgEl);
+
+
+}
+
+}
+
+}
+
+
+
+
+selectOp.addEventListener('click',myFunction);
