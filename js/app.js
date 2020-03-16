@@ -14,13 +14,13 @@ msgEl.appendChild(pEl);
 
 var ssform =document.querySelector('.ssform');
 
-ssform.addEventListener('submit',function(e){
-    e.preventDefault();
+// ssform.addEventListener('submit',function(e){
+//     e.preventDefault();
 
-document.getElementById('message').style.display='flex';
-render();
+// document.getElementById('message').style.display='flex';
+// render();
 
-});
+// });
 
 var busArrray=[
 'bag.jpg',
@@ -60,10 +60,10 @@ for(var i=0; i< busArrray.length;i++){
     new Bus(busArrray[i]);
 }
 
-
 function renderss(){
 
-var selectOp =document.getElementById('selectOp');
+    var selectOp =document.getElementById('selectOp');
+
 var optionEl =document.createElement('option');
 selectOp.appendChild(optionEl);
 optionEl.textContent=`...`;
@@ -79,36 +79,45 @@ optionEl.setAttribute('value' ,objectBus[i].name);
 renderss();
 
 
-// function show(){
 
-
-
-// }
 
 function myFunction(e){
 
-e.preventDefault();
-var shoeOrder =document.getElementById('shoeOrder');
-var sulEl =document.createElement('ul');
-shoeOrder.appendChild(sulEl);
-for(var i=0; i< busArrray.length;i++){
-if(e.target.value === objectBus[i].name){
-    sulEl.textContent='your order are:';
-var sliEl=document.createElement('li');
-sliEl.textContent =`${objectBus[i].name}`;
-sulEl.appendChild(sliEl);
-var imgEl=document.createElement('img');
-imgEl.setAttribute('src', objectBus[i].urlImage);
-sulEl.appendChild(imgEl);
+    e.preventDefault();
+    var shoeOrder =document.getElementById('shoeOrder');
+    var sulEl =document.createElement('ul');
+    shoeOrder.appendChild(sulEl);
+  
+    for(var i=0; i< busArrray.length;i++){
+        if(e.target.value === objectBus[i].name){
+            sulEl.textContent='your order are:';
+        var sliEl=document.createElement('li');
+        sliEl.textContent =`${objectBus[i].name}`;
+        sulEl.appendChild(sliEl);
+        var imgEl=document.createElement('img');
+        imgEl.setAttribute('src', objectBus[i].urlImage);
+        sulEl.appendChild(imgEl);
+        
+        }
+        set2();
+
+        }
 
 
-}
+    
+    }
+    
+    function set2(){
+        var products =JSON.stringify(objectBus);
+        localStorage.setItem('key1',products);
+    }
+    function get2(){
+        var key1=localStorage.getItem('key');
+        if(key1 != null){
+            objectBus =JSON.parse(key);
+           myFunction(e);
+        }
 
-}
-
-}
-
-
-
-
-selectOp.addEventListener('click',myFunction);
+    }    
+    selectOp.addEventListener('click',myFunction);
+    get2();
